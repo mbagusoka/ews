@@ -1,6 +1,6 @@
 package com.keuangan.ewspersistence.commmon;
 
-public enum CapaianEnum {
+public enum Capaian {
 
     EXCELLENT   ("Excellent"),
     GOOD        ("Good"),
@@ -8,7 +8,7 @@ public enum CapaianEnum {
 
     private final String description;
 
-    CapaianEnum(String description) {
+    Capaian(String description) {
         this.description = description;
     }
 

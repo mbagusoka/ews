@@ -18,6 +18,9 @@ public class CapaianPenilaianEntity extends BaseEntity {
     @Column(name = "capaian")
     private String capaian;
 
+    @Column(name = "jenis")
+    private String jenis;
+
     public UUID getPenilaianId() {
         return penilaianId;
     }
@@ -40,5 +43,13 @@ public class CapaianPenilaianEntity extends BaseEntity {
 
     public void setCapaian(String capaian) {
         this.capaian = capaian;
+    }
+
+    public String getJenis() {
+        return jenis;
+    }
+
+    public void setJenis(String jenis) {
+        this.jenis = jenis;
     }
 }

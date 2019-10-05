@@ -1,6 +1,7 @@
 package com.keuangan.ewspersistence.penilaian.repository;
 
-import com.keuangan.ewspersistence.commmon.CapaianEnum;
+import com.keuangan.ewspersistence.commmon.Capaian;
+import com.keuangan.ewspersistence.commmon.JenisPenilaian;
 import com.keuangan.ewspersistence.entity.CapaianPenilaianEntity;
 import com.keuangan.ewspersistence.penilaian.common.TestConstant;
 import com.keuangan.ewspersistence.penilaian.config.H2JpaConfig;
@@ -56,7 +57,7 @@ class CapaianPenilaianRepositoryTest {
     @Test
     void whenUpdateCapaianPenilaian_thenAutomaticallySetUpdatedDate() {
         CapaianPenilaianEntity capaianPenilaianEntity = capaianPenilaianRepository.getOne(TestConstant.UUID_DUMMY);
-        capaianPenilaianEntity.setCapaian(CapaianEnum.POOR.getDescription());
+        capaianPenilaianEntity.setCapaian(Capaian.POOR.getDescription());
         capaianPenilaianRepository.saveAndFlush(capaianPenilaianEntity);
         CapaianPenilaianEntity capaianPenilaianUpdated = capaianPenilaianRepository.getOne(TestConstant.UUID_DUMMY);
         assertThat(capaianPenilaianUpdated.getUpdatedDate()).isNotNull();
@@ -66,9 +67,10 @@ class CapaianPenilaianRepositoryTest {
         CapaianPenilaianEntity capaianPenilaianEntity = new CapaianPenilaianEntity();
         capaianPenilaianEntity.setId(TestConstant.UUID_DUMMY);
         capaianPenilaianEntity.setPenilaianId(UUID.randomUUID());
-        String capaian = CapaianEnum.getCapaianDescription(5);
+        String capaian = Capaian.getCapaianDescription(5);
         capaianPenilaianEntity.setCapaian(capaian);
         capaianPenilaianEntity.setRealisasi(DATE_DUMMY);
+        capaianPenilaianEntity.setJenis(JenisPenilaian.PERMOHONAN.getDescription());
         return capaianPenilaianEntity;
     }
 }
