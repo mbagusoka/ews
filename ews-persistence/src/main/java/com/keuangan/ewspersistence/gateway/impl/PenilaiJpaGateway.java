@@ -9,7 +9,6 @@ import com.keuangan.ewspersistence.repository.PenilaiRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -33,7 +32,7 @@ public class PenilaiJpaGateway implements PenilaiGateway {
     @Override
     public Page<PenilaiEntity> findPenilaiByFilter(PenilaiFilter filter) {
         Specification<PenilaiEntity> specification = constructSpecification(filter);
-        PageRequest pageRequest = constructPageRequest(filter);
+        PageRequest pageRequest = PersistenceUtils.constructPageRequest(filter);
         Page<PenilaiEntity> penilaiEntityPage = penilaiRepository.findAll(specification, pageRequest);
         return null == penilaiEntityPage ? new PageImpl<>(Collections.emptyList()) : penilaiEntityPage;
     }
@@ -69,9 +68,5 @@ public class PenilaiJpaGateway implements PenilaiGateway {
             String nameLike = PersistenceUtils.constructLike(value);
             return criteriaBuilder.like(root.get(PersistenceConstant.NAME), nameLike);
         }
-    }
-
-    private PageRequest constructPageRequest(PenilaiFilter filter) {
-        return PageRequest.of(filter.getPageNumber(), filter.getPageSize(), Sort.Direction.fromString(filter.getSortingOrder()), filter.getSortBy());
     }
 }

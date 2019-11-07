@@ -36,7 +36,7 @@ class PenilaiJpaGatewayTest {
         PenilaiEntity penilaiEntity = TestUtils.constructPenilaiDummyOne();
         repositorySpy.penilaiOptional = Optional.of(penilaiEntity);
         Optional<PenilaiEntity> penilaiOptional = gateway.findById(TestConstant.UUID_DUMMY);
-        assertThat(penilaiEntity).isNotNull();
+        assertThat(penilaiOptional).isNotNull();
         penilaiOptional.ifPresent(penilai -> assertThat(penilai.getId()).isEqualTo(TestConstant.UUID_DUMMY));
     }
 

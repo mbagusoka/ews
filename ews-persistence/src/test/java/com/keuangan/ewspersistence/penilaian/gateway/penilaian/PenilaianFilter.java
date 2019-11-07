@@ -1,38 +1,26 @@
-package com.keuangan.ewspersistence.entity;
+package com.keuangan.ewspersistence.penilaian.gateway.penilaian;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.keuangan.ewspersistence.commmon.PersistenceConstant;
+import com.keuangan.ewspersistence.commmon.PersistenceUtils;
+import com.keuangan.ewspersistence.gateway.filter.BaseFilter;
 
-@Entity
-@Table(name = "penilaian")
-public class PenilaianEntity extends BaseEntity {
+public class PenilaianFilter extends BaseFilter {
 
-    @Column(name = "no_surat_permohonan")
+    public PenilaianFilter() {
+        setPageSize(10);
+        setPageNumber(0);
+        setSortBy(PersistenceConstant.NO_SURAT_PERMOHONAN);
+        setSortingOrder(PersistenceConstant.DESC);
+    }
+
     private String noSuratPermohonan;
-
-    @Column(name = "tanggal_penilaian")
     private String tanggalPenilaian;
-
-    @Column(name = "tanggal_disposisi")
     private String tanggalDisposisi;
-
-    @Column(name = "deskripsi_objek")
     private String deskripsiObjek;
-
-    @Column(name = "satker")
     private String satker;
-
-    @Column(name = "kl")
     private String kl;
-
-    @Column(name = "verifikator")
     private String verifikator;
-
-    @Column(name = "status")
     private String status;
-
-    @Column(name = "jenis_penilaian")
     private String jenisPenilaian;
 
     public String getNoSuratPermohonan() {
@@ -105,5 +93,41 @@ public class PenilaianEntity extends BaseEntity {
 
     public void setJenisPenilaian(String jenisPenilaian) {
         this.jenisPenilaian = jenisPenilaian;
+    }
+
+    public boolean isNoSuratPermohonanValid() {
+        return PersistenceUtils.isStringValid(noSuratPermohonan);
+    }
+
+    public boolean isTanggalPenilaianValid() {
+        return PersistenceUtils.isStringValid(tanggalPenilaian);
+    }
+
+    public boolean isTanggalDisposisiValid() {
+        return PersistenceUtils.isStringValid(tanggalDisposisi);
+    }
+
+    public boolean isDeskripsiObjekValid() {
+        return PersistenceUtils.isStringValid(deskripsiObjek);
+    }
+
+    public boolean isSatkerValid() {
+        return PersistenceUtils.isStringValid(satker);
+    }
+
+    public boolean isKlValid() {
+        return PersistenceUtils.isStringValid(kl);
+    }
+
+    public boolean isVerifikatorValid() {
+        return PersistenceUtils.isStringValid(verifikator);
+    }
+
+    public boolean isStatusValid() {
+        return PersistenceUtils.isStringValid(status);
+    }
+
+    public boolean isJenisPenilaianValid() {
+        return PersistenceUtils.isStringValid(jenisPenilaian);
     }
 }
